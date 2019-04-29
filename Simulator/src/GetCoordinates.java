@@ -7,9 +7,9 @@ public class GetCoordinates {
         double rX = ratio*(x - CAMX) + CAMX;
         double rY = ratio*(y - CAMY) + CAMY;
         double rZ = ratio*(z - CAMZ) + CAMZ;
-        double c = Math.sqrt(1 + rZ*rZ/(rX*rX + rY*rY));
+        double c = Math.sqrt(1 + rY*rY/(rX*rX + rZ*rZ));
         double resultX = rX*c;
-        double resultY = rY*c;
+        double resultY = -rZ*c;
         double[] result = {resultX , resultY};
         return result;
     }
