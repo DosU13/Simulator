@@ -5,37 +5,43 @@ import java.awt.Color;
 
 public class Triangle extends JPanel
 {
-    private int  x1 , x2 , x3 , y1 , y2 , y3 , z1 , z2, z3 , red , green , blue , centroidX , centroidY , centroidZ;
-    public void insert(int x1 , int y1, int z1 , int x2 , int y2 , int z2 , int x3 , int y3 , int z3 , int red , int green , int blue)
+    private int  CAMX , CAMY , CAMZ , red , green , blue , centroidX , centroidY , centroidZ;
+    int rX1 , rX2 , rX3 , rY1 , rY2 , rY3;
+    public void init(int x1 , int y1, int z1 , int x2 , int y2 , int z2 , int x3 , int y3 , int z3 , int red , int green , int blue , int CAMX , int CAMY , int CAMZ)
     {
         this.red = red;
         this.green = green;
         this.blue = blue;
-        this.x1 = x1;
-        this.x2 = x2;
-        this.x3 = x3;
-        this.y1 = y1;
-        this.y2 = y2;
-        this.y3 = y3;
-        this.z1 = z1;
-        this.z2 = z2;
-        this.z3 = z3;
+        this.CAMX = CAMX;
+        this.CAMY = CAMY;
+        this.CAMZ = CAMZ;
         centroidX = (x1 + x2 + x3)/3;
         centroidY = (y1 + y2 + y3)/3;
         centroidZ = (z1 + z2 + z3)/3;
-
-
+        GetCoordinates first = new GetCoordinates();
+        double[] rFirst = new double[1];
+        rFirst = first.getCoordinates(x1 , y1 , z1 , CAMX , CAMY , CAMZ);
+        double[] rSecond = new double[1];
+        rSecond = first.getCoordinates(x2 , y2 , z2 , CAMX , CAMY , CAMZ);
+        double[] rThird = new double[1];
+        rThird = first.getCoordinates(x3 , y3 , z3 , CAMX , CAMY , CAMZ);
+        rX1 = (int) rFirst[0];
+        rY1 = (int) rFirst[1];
+        rX2 = (int) rSecond[0];
+        rY2 = (int) rSecond[1];
+        rX3 = (int) rThird[0];
+        rY3 = (int) rThird[1];
     }
 
 
-    @Override
+
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
 
 
-            int[] xValues = {x1/z1, x2/z2, x3/z3};
-            int[] yValues = {y1/z1 , y2/z2 , y3/z3};
+            int[] xValues = {rX1 , rX2 ,rX3 };
+            int[] yValues = {rY1 , rY2 , rY3};
 
             Color color = new Color(red , green , blue);
             g.setColor(color);

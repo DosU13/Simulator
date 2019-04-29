@@ -1,7 +1,7 @@
 public class Camera
 {
     private double latitude , longtitude , dis;
-    public void insert(double latitude , double longtitude , double dis)
+    public void init(double latitude , double longtitude , double dis)
     {
 
         this.latitude = latitude;
