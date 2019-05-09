@@ -1,7 +1,7 @@
-public class Camera
+class Camera
 {
     private double latitude , longtitude , dis;
-    public void init(double latitude , double longtitude , double dis)
+    void init(double latitude , double longtitude , double dis)
     {
 
         this.latitude = latitude;
@@ -11,7 +11,7 @@ public class Camera
     }
 
 
-    public int[] getCoordinates()
+    int[] getCoordinates()
     {
         double doubleX , doubleY , doubleZ ;
         latitude = Math.toRadians(latitude);
@@ -23,6 +23,9 @@ public class Camera
         int y = (int) doubleY;
         int z = (int) doubleZ;
         int[] result = {x , y , z};
+        System.out.printf("%s   %s   %S" , x , y , z);
+
+
         return result;
     }
 
