@@ -10,6 +10,13 @@ public class Main
 
 
         modeling.addTriangle( 0 , 0 , 100 , 71 , 0 , 71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
+        modeling.addTriangle( 100 , 0 , 0 , 71 , 0 , 71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
+        modeling.addTriangle( 100 , 0 , 0 , 71 , 0 , -71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
+        modeling.addTriangle( 0 , 0 , -100 , 71 , 0 , -71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
+        modeling.addTriangle( 0 , 0 , 100 , -71 , 0 , 71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
+        modeling.addTriangle( -100 , 0 , 0 , -71 , 0 , 71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
+        modeling.addTriangle( -100 , 0 , 0 , -71 , 0 , -71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
+        modeling.addTriangle( 0 , 0 , -100 , -71 , 0 , -71 , 0  , 0 , 0 , new double[] {0, 0 ,0});
         modeling.toScreen();
 
 
