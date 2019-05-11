@@ -5,12 +5,15 @@ public class Main
     public static void main(String[] args)
     {
         Modeling modeling = new Modeling();
-        modeling.inputCamera(10 , 10 ,700);
-        modeling.inputLight(90 , 60);
+        modeling.inputCamera(6 , -20 ,300);
+        modeling.inputLight(30 , -45);
 
 
 
-        modeling.addTriangle( 0 , 0 , 300 , 400 , 0 , -200 , -400  , 0 , -200 , new double[] {0, 200 ,255});
+        modeling.addTriangle( 0 , 100 , 0 , -100 , 0 , 0 , 0  , 0 , 100 , new double[] {0, 200 ,255});
+        modeling.addTriangle( 0 , 100 , 0 , -100 , 0 , 0 , 0  , 0 , -100 , new double[] {0, 200 ,255});
+        modeling.addTriangle( 0 , 100 , 0 , 100 , 0 , 0 , 0  , 0 , -100 , new double[] {0, 200 ,255});
+        modeling.addTriangle( 0 , 100 , 0 , 100 , 0 , 0 , 0  , 0 , 100 , new double[] {0, 200 ,255});
         modeling.toScreen();
 
 

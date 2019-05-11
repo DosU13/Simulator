@@ -2,7 +2,7 @@ import java.awt.Graphics;
 import java.awt.Polygon;
 import javax.swing.JPanel;
 import java.awt.Color;
-import javax.swing.JFrame;
+//import javax.swing.JFrame;
 
 class Modeling extends JPanel {
     private double camX, camY, camZ , lightX , lightY , lightZ;
@@ -22,7 +22,7 @@ class Modeling extends JPanel {
 
     void inputLight(double latitude, double longtitude) {
 
-        latitude = -1*Math.toRadians(latitude);
+        latitude = Math.toRadians(latitude);
         longtitude = Math.toRadians(longtitude);
         lightX = Math.cos(longtitude) * Math.sin(latitude);
         lightY = Math.cos(longtitude) * Math.cos(latitude);
@@ -67,7 +67,7 @@ class Modeling extends JPanel {
         indexOfTriangles += 1;
 
 
-        System.out.print(indexOfTriangles);
+//        System.out.print(indexOfTriangles);
     }
 
 
@@ -84,7 +84,7 @@ class Modeling extends JPanel {
             double y3 = triangles3d[i][0][7];
             double z3 = triangles3d[i][0][8];
             int[] color = new int[triangles3d[0][1].length];
-            for (int j = 0 ; j < triangles3d[0][1].length ; i++ ) color[j] = (int) triangles3d[0][1][j];
+            for (int j = 0 ; j < triangles3d[0][1].length ; j++ ) color[j] = (int) triangles3d[0][1][j];
             int red = color[0];
             int green = color[1];
             int blue = color[2];
@@ -103,11 +103,15 @@ class Modeling extends JPanel {
                 normalX *= -1;
                 normalY *= -1;
                 normalZ *= -1;}
-            double normxLight = (normalX*lightX + normalY*lightY + normalZ*lightZ)/Math.sqrt((normalX*normalX + normalY*normalY + normalZ*normalZ)*(lightX*lightX + lightY*lightY + lightZ*lightZ));
-            int diffuse = (int) (1+Math.max((int)normxLight , 0));
-            color[0] = red*diffuse;
-            color[1] = green*diffuse;
-            color[2] = blue*diffuse;
+            double normLight = (normalX*lightX + normalY*lightY + normalZ*lightZ)/Math.sqrt((normalX*normalX + normalY*normalY + normalZ*normalZ)*(lightX*lightX + lightY*lightY + lightZ*lightZ));
+            double diffuse = (1+Math.max(normLight , 0))/2;
+            double finalRed =  red*diffuse;
+            double finalGreen = green*diffuse;
+            double finalBlue = blue*diffuse;
+            color[0] = (int) finalRed;
+            color[1] = (int) finalGreen;
+            color[2] = (int) finalBlue;
+            System.out.printf("%n%s   %s   %s   %s   %s   %s   %s  %s  %s  %s",ax , bx , ay , by , az , bz , normalX , normalY , normalZ , diffuse);
 
             double[] rFirst;
             rFirst = getCoordinates(x1, y1, z1);
@@ -155,7 +159,7 @@ class Modeling extends JPanel {
             g.setColor(new Color(red, green, blue));
             Polygon triangle = new Polygon(xValues, yValues, 3);
             g.fillPolygon(triangle);
-            System.out.printf( "%n%n%s     %s     %s     %s     %s     %s     %s     %s     %s     " , x1 ,x2 ,x3 ,y1 ,y2 ,y3 ,red ,green , blue);
+//            System.out.printf( "%n%n%s     %s     %s     %s     %s     %s     %s     %s     %s     " , x1 ,x2 ,x3 ,y1 ,y2 ,y3 ,red ,green , blue);
 
 
         }
