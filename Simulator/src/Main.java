@@ -9,7 +9,6 @@ public class Main
         modeling.inputLight(30 , -45);
 
 
-
         modeling.addTriangle( 0 , 100 , 0 , -100 , 0 , 0 , 0  , 0 , 100 , new double[] {0, 200 ,255});
         modeling.addTriangle( 0 , 100 , 0 , -100 , 0 , 0 , 0  , 0 , -100 , new double[] {0, 200 ,255});
         modeling.addTriangle( 0 , 100 , 0 , 100 , 0 , 0 , 0  , 0 , -100 , new double[] {0, 200 ,255});
