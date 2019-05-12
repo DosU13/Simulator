@@ -104,7 +104,7 @@ class Modeling extends JPanel {
             double halfY = lightY + camY/camSquare;
             double halfZ = lightZ + camZ/camSquare;
             double specular = (halfX*normalX + halfY*normalY + halfZ*normalZ)/Math.sqrt((halfX*halfX + halfY*halfY + halfZ*halfZ)*(normalX*normalX + normalY*normalY + normalZ*normalZ));
-            double scalar = (1 + Math.max(normLight , 0) + Math.pow(specular,3))/3;
+            double scalar = (1 + Math.max(normLight , 0) + Math.pow(specular,7))/3;
             double finalRed =  red*scalar;
             double finalGreen = green*scalar;
             double finalBlue = blue*scalar;
