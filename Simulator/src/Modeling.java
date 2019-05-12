@@ -15,6 +15,7 @@ class Modeling extends JPanel {
         camX = distance * Math.cos(longtitude) * Math.sin(latitude);
         camY = distance * Math.cos(longtitude) * Math.cos(latitude);
         camZ = distance * Math.sin(longtitude);
+        camSquare = camX * camX + camY * camY + camZ * camZ;
     }
 
 
@@ -31,12 +32,8 @@ class Modeling extends JPanel {
 
 
     private double[] getCoordinates(double x, double y, double z) {
-
-
-        double multiple = camX * camX + camY * camY + camZ * camZ;
-        camSquare = multiple;
-        double ratio = (multiple - camX * x - camY * y - camZ * z)/multiple  ;
-        double distance = ratio*Math.sqrt(multiple);
+        double ratio = (camSquare - camX * x - camY * y - camZ * z)/camSquare  ;
+        double distance = ratio*Math.sqrt(camSquare);
         double rX = (x - camX)/ratio + camX;
         double rY = (y - camY)/ratio + camY;
         double rZ = (z - camZ)/ratio + camZ;
@@ -49,7 +46,6 @@ class Modeling extends JPanel {
         double resultX = sign * Math.sqrt(rX * rX + rY * rY - c);
         double resultY = Math.signum(rZ) * Math.sqrt(rZ * rZ + c);
 
-//        System.out.printf("%n     %s     %s     %s     %s", x, rX, sign, resultX);
         return (new double[]{resultX, resultY , distance});
     }
 
@@ -68,13 +64,12 @@ class Modeling extends JPanel {
         indexOfTriangles += 1;
 
 
-//        System.out.print(indexOfTriangles);
     }
 
 
     void toScreen() {
         triangles2d = triangleNull;
-        for (int i = 0; i < indexOfTriangles; i++) {
+        for (int i = 0; i < indexOfTriangles; ++i) {
             double x1 = triangles3d[i][0][0];
             double y1 = triangles3d[i][0][1];
             double z1 = triangles3d[i][0][2];
@@ -116,7 +111,6 @@ class Modeling extends JPanel {
             color[0] = (int) finalRed;
             color[1] = (int) finalGreen;
             color[2] = (int) finalBlue;
-//            System.out.printf("%n%s   %s",specular , scalar);
 
             double[] rFirst;
             rFirst = getCoordinates(x1, y1, z1);
@@ -144,7 +138,6 @@ class Modeling extends JPanel {
                 if (distance < distanceVary) k = kVary+1; }
             for ( int l = i  ; l > k ; l-- ) triangles2d[l] = triangles2d[l-1];
             triangles2d[k] = result;
-//            System.out.printf( "%n%s    %s    %s",i , color[0] , color[1] );
         }
     }
 
@@ -171,7 +164,6 @@ class Modeling extends JPanel {
             int[] yValues = {-y1 + height, -y2 + height, -y3 + height};
 
             g.setColor(new Color(red, green, blue));
-//            System.out.println(new Color(red,green,blue));
             Polygon triangle = new Polygon(xValues, yValues, 3);
             g.fillPolygon(triangle);
 

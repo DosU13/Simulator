@@ -80,6 +80,7 @@ final public class Tester {
                 Thread.sleep(10);
             } catch (Exception exc){}
             frame.repaint();
+            frame.validate();
         }
     }
 }

@@ -2,17 +2,14 @@ import javax.swing.JFrame;
 public class Main
 {
     public static void main(String[] args) {
-        while (true) {
-            try{
-                Thread.sleep(10);
-            } catch (Exception exc){}
             Modeling modeling = new Modeling();
-            modeling.inputCamera(200, 20, 500);
+            modeling.inputCamera(0, 20, 500);
             modeling.inputLight(0, 90);
 
 
-            modeling.addTriangle(0, 0, 100, -71, 0, 71, 0, 71, 71, new double[]{0, 200, 255});
+
             modeling.addTriangle(0, 0, 100, 0, 71, 71, 71, 0, 71, new double[]{0, 200, 255});
+            modeling.addTriangle(0, 0, 100, -71, 0, 71, 0, 71, 71, new double[]{0, 200, 255});
             modeling.addTriangle(0, 0, 100, 71, 0, 71, 0, -71, 71, new double[]{0, 200, 255});
             modeling.addTriangle(0, 0, 100, 0, -71, 71, -71, 0, 71, new double[]{0, 200, 255});
 
@@ -22,7 +19,7 @@ public class Main
             modeling.addTriangle(-71, -71, 0, 0, -71, 71, -71, 0, 71, new double[]{0, 200, 255});
 
             modeling.addTriangle(-71, 0, 71, -71, 71, 0, -71, -71, 0, new double[]{0, 200, 255});
-            modeling.addTriangle(0, 71, 71, 0, 71, 0, -71, 71, 0, new double[]{0, 200, 255});
+            modeling.addTriangle(0, 71, 71, -71, 71, 0, 71, 71, 0, new double[]{0, 200, 255});
             modeling.addTriangle(71, 0, 71, 71, 71, 0, 71, -71, 0, new double[]{0, 200, 255});
             modeling.addTriangle(0, -71, 71, 71, -71, 0, -71, -71, 0, new double[]{0, 200, 255});
 
@@ -37,7 +34,7 @@ public class Main
             modeling.addTriangle(-71, -71, -0, 0, -71, -71, -71, 0, -71, new double[]{0, 200, 255});
 
             modeling.addTriangle(-71, 0, -71, -71, 71, 0, -71, -71, 0, new double[]{0, 200, 255});
-            modeling.addTriangle(0, 71, -71, 0, 71, 0, -71, 71, 0, new double[]{0, 200, 255});
+            modeling.addTriangle(0, 71, -71, -71, 71, 0, 71, 71, 0, new double[]{0, 200, 255});
             modeling.addTriangle(71, 0, -71, 71, 71, 0, 71, -71, 0, new double[]{0, 200, 255});
             modeling.addTriangle(0, -71, -71, 71, -71, 0, -71, -71, 0, new double[]{0, 200, 255});
 
@@ -49,8 +46,9 @@ public class Main
             frame.add(modeling);
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
             frame.setVisible(true);
-        }
+
     }
+
 
 }
 
