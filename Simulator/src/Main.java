@@ -3,7 +3,7 @@ public class Main
 {
     public static void main(String[] args) {
         Modeling modeling = new Modeling();
-        modeling.inputCamera(180, 20, 1000);
+        modeling.inputCamera(200, 20, 1000);
         modeling.inputLight(0, 90);
 
 
@@ -39,6 +39,18 @@ public class Main
         modeling.addTriangle(67, 23, 55, 64, 44, 111, 46, 27, 89, new double[]{100, 200, 20});
         modeling.addTriangle(69, 70, 60, 64, 44, 111, 47, 67, 108, new double[]{100, 200, 20});
         modeling.addTriangle(21, 68, 56, 22, 44, 100, 47, 67, 108, new double[]{100, 200, 20});
+        modeling.addTriangle(21, 68, 56, 22, 44, 100, 20, 25, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(67, 23, 55, 46, 27, 89, 20, 25, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(67, 23, 55, 64, 44, 111, 69, 70, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(21, 68, 56, 47, 67, 108, 69, 70, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(21, 68, 39, 48, 41, 100, 20, 25, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(67, 23, 55, 47, 36,45 , 20, 25, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(67, 23, 55, 54, 40, 40, 69, 70, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(21, 68, 56, 44, 53, 43, 69, 70, 60, new double[]{100, 200, 20});
+        modeling.addTriangle(21, 68, 56, 44, 53, 43, 39, 48, 41, new double[]{100, 200, 20});
+        modeling.addTriangle(20, 25, 60, 47, 36, 45, 39, 48, 41, new double[]{100, 200, 20});
+        modeling.addTriangle(67 , 23, 55, 47, 36, 45, 54, 40, 40, new double[]{100, 200, 20});
+        modeling.addTriangle(69 , 70, 60, 44, 53, 43, 54, 40, 40, new double[]{100, 200, 20});
 
         modeling.toScreen();
 
