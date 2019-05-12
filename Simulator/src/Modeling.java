@@ -116,7 +116,7 @@ class Modeling extends JPanel {
             color[0] = (int) finalRed;
             color[1] = (int) finalGreen;
             color[2] = (int) finalBlue;
-            System.out.printf("%n%s   %s",specular , scalar);
+//            System.out.printf("%n%s   %s",specular , scalar);
 
             double[] rFirst;
             rFirst = getCoordinates(x1, y1, z1);
@@ -144,7 +144,7 @@ class Modeling extends JPanel {
                 if (distance < distanceVary) k = kVary+1; }
             for ( int l = i  ; l > k ; l-- ) triangles2d[l] = triangles2d[l-1];
             triangles2d[k] = result;
-            System.out.printf( "%n%s    %s    %s",i , color[0] , color[1] );
+//            System.out.printf( "%n%s    %s    %s",i , color[0] , color[1] );
         }
     }
 
@@ -171,11 +171,14 @@ class Modeling extends JPanel {
             int[] yValues = {-y1 + height, -y2 + height, -y3 + height};
 
             g.setColor(new Color(red, green, blue));
-            System.out.println(new Color(red,green,blue));
+//            System.out.println(new Color(red,green,blue));
             Polygon triangle = new Polygon(xValues, yValues, 3);
             g.fillPolygon(triangle);
 
 
         }
     }
+
+
+
 }
