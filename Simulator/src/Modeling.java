@@ -5,12 +5,12 @@ import java.awt.Color;
 //import javax.swing.JFrame;
 
 class Modeling extends JPanel {
-    private double camX, camY, camZ , lightX , lightY , lightZ;
+    private double camX, camY, camZ ,camSquare ,  lightX , lightY , lightZ;
 
 
     void inputCamera(double latitude, double longtitude, double distance) {
 
-        latitude = -1*Math.toRadians(latitude);
+        latitude = Math.toRadians(latitude);
         longtitude = Math.toRadians(longtitude);
         camX = distance * Math.cos(longtitude) * Math.sin(latitude);
         camY = distance * Math.cos(longtitude) * Math.cos(latitude);
@@ -34,6 +34,7 @@ class Modeling extends JPanel {
 
 
         double multiple = camX * camX + camY * camY + camZ * camZ;
+        camSquare = multiple;
         double ratio = (multiple - camX * x - camY * y - camZ * z)/multiple  ;
         double distance = ratio*Math.sqrt(multiple);
         double rX = (x - camX)/ratio + camX;
@@ -67,7 +68,7 @@ class Modeling extends JPanel {
         indexOfTriangles += 1;
 
 
-        System.out.print(indexOfTriangles);
+//        System.out.print(indexOfTriangles);
     }
 
 
@@ -104,14 +105,18 @@ class Modeling extends JPanel {
                 normalY *= -1;
                 normalZ *= -1;}
             double normLight = (normalX*lightX + normalY*lightY + normalZ*lightZ)/Math.sqrt((normalX*normalX + normalY*normalY + normalZ*normalZ)*(lightX*lightX + lightY*lightY + lightZ*lightZ));
-            double diffuse = (1+Math.max(normLight , 0))/2;
-            double finalRed =  red*diffuse;
-            double finalGreen = green*diffuse;
-            double finalBlue = blue*diffuse;
+            double halfX = lightX + camX/camSquare;
+            double halfY = lightY + camY/camSquare;
+            double halfZ = lightZ + camZ/camSquare;
+            double specular = (halfX*normalX + halfY*normalY + halfZ*normalZ)/Math.sqrt((halfX*halfX + halfY*halfY + halfZ*halfZ)*(normalX*normalX + normalY*normalY + normalZ*normalZ));
+            double scalar = (1 + Math.max(normLight , 0) + specular*specular*specular)/3;
+            double finalRed =  red*scalar;
+            double finalGreen = green*scalar;
+            double finalBlue = blue*scalar;
             color[0] = (int) finalRed;
             color[1] = (int) finalGreen;
             color[2] = (int) finalBlue;
-//            System.out.printf("%n%s   %s   %s   %s   %s   %s   %s  %s  %s  %s",ax , bx , ay , by , az , bz , normalX , normalY , normalZ , diffuse);
+            System.out.printf("%n%s   %s",specular , scalar);
 
             double[] rFirst;
             rFirst = getCoordinates(x1, y1, z1);
@@ -139,7 +144,7 @@ class Modeling extends JPanel {
                 if (distance < distanceVary) k = kVary+1; }
             for ( int l = i  ; l > k ; l-- ) triangles2d[l] = triangles2d[l-1];
             triangles2d[k] = result;
-            System.out.printf( "%n%s    %s    %S",i , distance , k );
+            System.out.printf( "%n%s    %s    %s",i , color[0] , color[1] );
         }
     }
 
@@ -166,9 +171,9 @@ class Modeling extends JPanel {
             int[] yValues = {-y1 + height, -y2 + height, -y3 + height};
 
             g.setColor(new Color(red, green, blue));
+            System.out.println(new Color(red,green,blue));
             Polygon triangle = new Polygon(xValues, yValues, 3);
             g.fillPolygon(triangle);
-//            System.out.printf( "%n%n%s     %s     %s     %s     %s     %s     %s     %s     %s     " , x1 ,x2 ,x3 ,y1 ,y2 ,y3 ,red ,green , blue);
 
 
         }
