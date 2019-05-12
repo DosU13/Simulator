@@ -54,8 +54,8 @@ class Modeling extends JPanel {
 
 
     private double[][][] triangles3d = new double[10000][1][];
-    private int[][][] triangles2d = new int[10000][2][];
-    private int[][][] triangleNull = new int[10000][2][];
+    private int[][][] triangles2d = new int[10000][3][];
+    private int[][][] triangleNull = new int[10000][3][];
     private int indexOfTriangles = 0;
 
 
@@ -67,7 +67,7 @@ class Modeling extends JPanel {
         indexOfTriangles += 1;
 
 
-//        System.out.print(indexOfTriangles);
+        System.out.print(indexOfTriangles);
     }
 
 
@@ -111,7 +111,7 @@ class Modeling extends JPanel {
             color[0] = (int) finalRed;
             color[1] = (int) finalGreen;
             color[2] = (int) finalBlue;
-            System.out.printf("%n%s   %s   %s   %s   %s   %s   %s  %s  %s  %s",ax , bx , ay , by , az , bz , normalX , normalY , normalZ , diffuse);
+//            System.out.printf("%n%s   %s   %s   %s   %s   %s   %s  %s  %s  %s",ax , bx , ay , by , az , bz , normalX , normalY , normalZ , diffuse);
 
             double[] rFirst;
             rFirst = getCoordinates(x1, y1, z1);
@@ -130,7 +130,16 @@ class Modeling extends JPanel {
             int distance3 = (int) rThird[2];
             int distance = distance1 + distance2 + distance3;
             int[][] result = {{rX1, rX2, rX3}, {rY1, rY2, rY3}, color, {distance}};
-            triangles2d[i] = result;
+
+
+
+            int k = 0;
+            for (int kVary = 0 ; kVary < i ; kVary++ ){
+                int distanceVary = triangles2d[kVary][3][0];
+                if (distance < distanceVary) k = kVary+1; }
+            for ( int l = i  ; l > k ; l-- ) triangles2d[l] = triangles2d[l-1];
+            triangles2d[k] = result;
+            System.out.printf( "%n%s    %s    %S",i , distance , k );
         }
     }
 

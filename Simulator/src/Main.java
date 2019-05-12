@@ -5,7 +5,7 @@ public class Main
     public static void main(String[] args)
     {
         Modeling modeling = new Modeling();
-        modeling.inputCamera(6 , -20 ,300);
+        modeling.inputCamera(6 , -40 ,300);
         modeling.inputLight(30 , -45);
 
 
