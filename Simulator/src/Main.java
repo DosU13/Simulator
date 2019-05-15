@@ -1,10 +1,11 @@
 import javax.swing.JFrame;
+
 public class Main
 {
     public static void main(String[] args) {
         Modeling modeling = new Modeling();
-        modeling.inputCamera(200, 20, 1000);
-        modeling.inputLight(0, 90);
+        modeling.inputCamera(270, 0, 1000);
+        modeling.inputLight(0, 45);
 
 
 
@@ -52,7 +53,7 @@ public class Main
         modeling.addTriangle(67 , 23, 55, 47, 36, 45, 54, 40, 40, new double[]{100, 200, 20});
         modeling.addTriangle(69 , 70, 60, 44, 53, 43, 54, 40, 40, new double[]{100, 200, 20});
 
-        modeling.toScreen();
+        modeling.draw();
 
 
         JFrame frame = new JFrame("Drawing triangle");

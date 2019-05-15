@@ -67,7 +67,7 @@ class Modeling extends JPanel {
     }
 
 
-    void toScreen() {
+    void draw() {
         triangles2d = triangleNull;
         for (int i = 0; i < indexOfTriangles; ++i) {
             double x1 = triangles3d[i][0][0];
@@ -79,8 +79,8 @@ class Modeling extends JPanel {
             double x3 = triangles3d[i][0][6];
             double y3 = triangles3d[i][0][7];
             double z3 = triangles3d[i][0][8];
-            int[] color = new int[triangles3d[0][1].length];
-            for (int j = 0 ; j < triangles3d[0][1].length ; j++ ) color[j] = (int) triangles3d[0][1][j];
+            int[] color = new int[triangles3d[i][1].length];
+            for (int j = 0 ; j < triangles3d[i][1].length ; j++ ) color[j] = (int) triangles3d[i][1][j];
             int red = color[0];
             int green = color[1];
             int blue = color[2];
@@ -108,9 +108,10 @@ class Modeling extends JPanel {
             double finalRed =  red*scalar;
             double finalGreen = green*scalar;
             double finalBlue = blue*scalar;
-            color[0] = (int) finalRed;
-            color[1] = (int) finalGreen;
-            color[2] = (int) finalBlue;
+            int[] finalColor = new int[3];
+            finalColor[0] = (int) finalRed;
+            finalColor[1] = (int) finalGreen;
+            finalColor[2] = (int) finalBlue;
 
             double[] rFirst;
             rFirst = getCoordinates(x1, y1, z1);
@@ -128,7 +129,7 @@ class Modeling extends JPanel {
             int rY3 = (int) rThird[1];
             int distance3 = (int) rThird[2];
             int distance = distance1 + distance2 + distance3;
-            int[][] result = {{rX1, rX2, rX3}, {rY1, rY2, rY3}, color, {distance}};
+            int[][] result = {{rX1, rX2, rX3}, {rY1, rY2, rY3}, finalColor, {distance}};
 
 
 
