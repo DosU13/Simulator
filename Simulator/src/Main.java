@@ -4,8 +4,9 @@ public class Main
 {
     public static void main(String[] args) {
         Modeling modeling = new Modeling();
-        modeling.inputCamera(270, 0, 1000);
+        modeling.inputCamera(0, 25, 1000);
         modeling.inputLight(0, 45);
+        modeling.background(150 , 200 , 255);
 
 
 

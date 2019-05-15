@@ -7,6 +7,13 @@ import java.awt.Color;
 class Modeling extends JPanel {
     private double camX, camY, camZ ,camSquare ,  lightX , lightY , lightZ;
 
+    int bred , bgreen , bblue;
+
+    void background(int bred , int bgreen , int bblue){
+        this.bblue = bblue;
+        this.bgreen = bgreen;
+        this.bred = bred;
+    }
 
     void inputCamera(double latitude, double longtitude, double distance) {
 
@@ -148,6 +155,11 @@ class Modeling extends JPanel {
         super.paintComponent(g);
         int width = getWidth() / 2;
         int height = getHeight() / 2;
+        int[] xValue = {0 , 2*width , 2*width , 0};
+        int[] yValue = {0 , 0 , 2*height , 2*height};
+        g.setColor(new Color(bred , bgreen , bblue));
+        Polygon b = new Polygon(xValue, yValue, 4);
+        g.fillPolygon(b);
 
         for (int i = 0; i < indexOfTriangles; i++) {
             int x1 =  triangles2d[i][0][0];
