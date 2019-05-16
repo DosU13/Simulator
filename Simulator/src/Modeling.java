@@ -2,12 +2,13 @@ import java.awt.Graphics;
 import java.awt.Polygon;
 import javax.swing.JPanel;
 import java.awt.Color;
+
 //import javax.swing.JFrame;
 
 class Modeling extends JPanel {
     private double camX, camY, camZ ,camSquare ,  lightX , lightY , lightZ;
 
-    int bred , bgreen , bblue;
+    private int bred , bgreen , bblue;
 
     void background(int bred , int bgreen , int bblue){
         this.bblue = bblue;
@@ -144,7 +145,7 @@ class Modeling extends JPanel {
             for (int kVary = 0 ; kVary < i ; kVary++ ){
                 int distanceVary = triangles2d[kVary][3][0];
                 if (distance < distanceVary) k = kVary+1; }
-            for ( int l = i  ; l > k ; l-- ) triangles2d[l] = triangles2d[l-1];
+            if (i - k >= 0) System.arraycopy(triangles2d, k, triangles2d, k + 1, i - k);
             triangles2d[k] = result;
         }
     }
